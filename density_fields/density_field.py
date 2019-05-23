@@ -22,7 +22,7 @@ def density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout):
 
 ####################################### INPUT ##########################################
 root         = '/simons/scratch/fvillaescusa/pdf_information'
-root_out     = '/simons/scratch/fvillaescusa/high_resolution_ML/results'
+root_out     = '/simons/scratch/fvillaescusa/HR_ML/results'
 ptypes       = [1]
 MAS          = 'CIC'
 do_RSD       = False
@@ -46,32 +46,32 @@ for i in numbers:
     ################# LR (z=0) ##################
     # find the name of the output file
     fout = '%s/%s/df_%d_z=0.npy'%(root_out,'LR',i)
-    if os.path.exists(fout):  continue
+    if not(os.path.exists(fout)): 
     
-    # compute the density field and save it to file
-    grid = 256
-    snapshot = '%s/%s/%d/snapdir_004/snap_004'%(root,'fiducial_LR',i)
-    density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
+        # compute the density field and save it to file
+        grid = 256
+        snapshot = '%s/%s/%d/snapdir_004/snap_004'%(root,'fiducial_LR',i)
+        density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
     #############################################
 
     ################# HR (z=0) ##################
     # find the name of the output file
     fout = '%s/%s/df_%d_z=0.npy'%(root_out,'HR',i)
-    if os.path.exists(fout):  continue
+    if not(os.path.exists(fout)):
     
-    # compute the density field and save it to file
-    grid = 512
-    snapshot = '%s/%s/%d/snapdir_004/snap_004'%(root,'fiducial',i)
-    density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
+        # compute the density field and save it to file
+        grid = 512
+        snapshot = '%s/%s/%d/snapdir_004/snap_004'%(root,'fiducial',i)
+        density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
     #############################################
 
     ################ HR (z=127) #################
     # find the name of the output file
     fout = '%s/%s/df_%d_z=127.npy'%(root_out,'HR',i)
-    if os.path.exists(fout):  continue
+    if not(os.path.exists(fout)):
     
-    # compute the density field and save it to file
-    grid = 512
-    snapshot = '%s/%s/%d/ics'%(root,'fiducial',i)
-    density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
+        # compute the density field and save it to file
+        grid = 512
+        snapshot = '%s/%s/%d/ics'%(root,'fiducial',i)
+        density_field(snapshot, ptypes, grid, MAS, do_RSD, axis, fout)
     #############################################
